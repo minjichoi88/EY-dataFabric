@@ -1,0 +1,35 @@
+.link {
+	stroke: #000;
+	stroke-width: 1.5px;
+  }
+  rect.table
+  {
+	stroke:black;
+	stroke-width:1;
+	fill:white;
+	width: auto;
+  }
+  rect.tableHeader
+  {  
+	stroke:black; 
+	stroke-width:1; 
+	fill:grey;
+  }
+  text
+  {
+	font-size:12px;
+  }
+  text.tableHeader
+  {
+	fill:white;
+	font-weight:bold;
+  }
+  text.nonNullable
+  {
+	font-weight:bold;
+  }
+  line
+  {
+	stroke:black;
+	stroke-width:0.5;      
+  }

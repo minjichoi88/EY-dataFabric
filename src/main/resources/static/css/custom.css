@@ -1,0 +1,446 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+tr.addRow:hover { 
+  background-color:rgba(255, 230, 0, 0.2) ; 
+}
+
+/* table caption {
+  padding: .5em 0;
+}
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+} */
+
+body,html{width:100%; height:100%}
+
+body {
+  color: #5a5a5a;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+a, a:hover, .btn{outline:none!important;}
+
+.row.no-gutter{
+	margin-right:0;
+	margin-left:0;
+	}
+.row.no-gutter > [class^="col-"],
+.row.no-gutter > [class*=" col-"] {
+	
+	padding-right:0px;
+	padding-left:0px;
+}
+
+.no-padding{
+	padding-left:0; padding-right:0;
+}
+section{padding:75px 0 100px;}
+.btn-capsul{border-radius:25px; padding-left:25px; padding-right:25px;}
+.btn-submit {background: #5cb85c none repeat scroll 0 0; color: #fff; font-size: 20px; margin-top: 20px; padding: 7px 40px;}
+.btn-submit:hover {background:#3b8f3b; color:#fff}
+
+/* 아래의 모든 코드는 영역::코드로 사용 */
+.form-control::-webkit-scrollbar {
+    width: 10px;  /* 스크롤바의 너비 */
+}
+
+.form-control::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #ffe600; /* 스크롤바의 색상 */
+    
+    border-radius: 10px;
+}
+
+.form-control::-webkit-scrollbar-track {
+    /*background: rgba(33, 122, 244, .1);  /*스크롤바 뒷 배경 색상*/
+}
+
+/*-------------- Top Header --------------*/  
+.navbar-default {
+    background-color: transparent;
+    border: medium none;
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 24px 0;
+    position:absolute;
+	  top:0;
+    width: 100%;
+    box-shadow: 0 5px 5px -6px #777;
+}
+.affix {
+    animation: 1s ease 0s normal both 1 running slideInDown;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 0 8px 0 rgba(88, 88, 88, 0.19);
+    padding: 0.75em 0;
+    position: fixed;
+    z-index: 1000;
+}
+.radio-btn input[type="radio"], .check-box input[type="checkbox"] {
+  visibility: hidden;
+}
+/*Custom Loading*/
+/* Absolute Center Spinner */
+.textarea:focus {
+  outline: none;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*Custom checkbox*/
+.check-box {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 2px 7px 0 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 1px #ccc;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+  border: 1px solid #ccc;
+}
+.check-box i {
+  background: url('http://cdn1.iconfinder.com/data/icons/mimiGlyphs/16/check_mark.png') no-repeat center center;
+  position: absolute;
+  left: 3px;
+  bottom: -15px;
+  width: 16px;
+  height: 16px;
+  opacity: .5;
+  -webkit-transition: all 400ms ease-in-out;
+  -moz-transition: all 400ms ease-in-out;
+  -o-transition: all 400ms ease-in-out;
+  transition: all 400ms ease-in-out;
+  -webkit-transform:rotateZ(-180deg);
+  -moz-transform:rotateZ(-180deg);
+  -o-transform:rotateZ(-180deg);
+  transform:rotateZ(-180deg);
+}
+.checkedBox {
+  -moz-box-shadow: inset 0 0 5px 1px #ccc;
+  -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+  box-shadow: inset 0 0 5px 1px #ccc;
+  border-bottom-color: #fff;
+}
+.checkedBox i {
+  bottom: 2px;
+  -webkit-transform:rotateZ(0deg);
+  -moz-transform:rotateZ(0deg);
+  -o-transform:rotateZ(0deg);
+  transform:rotateZ(0deg);
+}
+/*Custom radio button*/
+.radio-btn {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  float: left;
+  margin: 3px 7px 0 0;
+  cursor: pointer;
+  position: relative;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 1px #ccc;
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+}
+.checkedRadio {
+  -moz-box-shadow: inset 0 0 5px 1px #ccc;
+  -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+  box-shadow: inset 0 0 5px 1px #ccc;
+}
+.radio-btn i {
+  border: 1px solid #E1E2E4;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+}
+.checkedRadio i {
+  background-color: #898A8C;
+}
+
+.navbar-default .navbar-nav li a {color: gray;font-size:16px; font-weight:600}
+.navbar-default.affix .navbar-nav li a {color:#0B5679;}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus{background:none; color:#FF0000;}
+
+.navbar-default a.navbar-brand{color:#fff; font-size:30px; font-weight:600}
+.navbar-default a.navbar-brand:hover{color:#FF0000;}
+.navbar-default a.navbar-brand.dark{color:#0B5679;}
+.color-bg-nav{background:#1f2d3c; margin-top:0; padding:5px 0}
+
+/*-------------- Top Banner --------------*/  
+.banner-sec{height:100%; background:white; background-size:cover;}
+.banner-sec .jumbotron{background:none;text-align:center; color:#fff; padding:50px; padding-bottom: 10px;}
+.banner-sec .jumbotron p{font-size:19px;}
+.banner-sec h1{font-weight:700; text-transform:uppercase; margin-bottom:0}
+.banner-sec h2{font-weight:300; text-transform:uppercase; margin-bottom:40px; margin-top:10px; font-size:22px; }
+.banner-sec .input-group {margin-top: 20px; padding: 0 111px;}
+.banner-sec .form-control {border-radius: 25px; height: 43px;}
+.banner-sec .btn-search {background: #ffe600 none repeat scroll 0 0; border-radius: 25px; color: gray; font-size: 19px; height: 43px; padding: 0 35px; text-shadow: 1px 1px white;}
+
+
+.four-col-services{float:left; width:100%; background:#fff;}
+.four-col-services h2{font-size:38px; font-weight:bold; margin:0 0 20px; color:#0f3648}
+.four-col-services h4{ margin:0 0 40px; font-size:16px; line-height:25px; padding:0 20px; color:#919191}
+.four-col-services h3{color: #0b5679; font-size: 19px; font-weight: 600; margin-top: 15px;text-transform: uppercase;}
+.four-col-services p{font-size:16px; margin:15px 0; line-height:25px; }
+.four-col-services i{ border: 1px solid #0b5679; border-radius: 50%; color: #0b5679; font-size: 26px; margin-right: 10px; width:66px; height:66px; text-align:center; line-height:66px;}
+.four-col-services .service-block{margin-bottom:30px;}
+
+.about-sec{background:url(../img/about-bg.jpg) #507194 repeat-x; float:left; width:100%; color:#fff; }
+.about-sec h2{font-size:54px; font-weight:bold; margin:0}
+.about-sec h5{font-size:17px; font-weight:bold; margin:0}
+.about-sec .main-text p {color: #e1e1e1; font-size: 16px; font-weight: 400; line-height: 26px; margin: 15px 0;}
+.about-sec .points {padding:0 40px; margin-top:40px;}
+.about-sec .points p{font-size:15px; margin:20px 0 0px; line-height:20px; color: #e1e1e1;}
+.about-sec .point-content {margin:10px 0 40px;}
+
+.feature-section{float:left; width:100%; background:#fff;}
+.feature-section h2{font-size:38px; font-weight:bold; color:#0b5679;}
+.feature-section h3 {font-size: 33px; font-weight: 500; margin: 70px 0 20px;}
+.feature-section p.sub-text{font-size:18px; margin-left:3px;}
+.feature-section p{font-size:18px; margin:15px 0; line-height:30px; margin-left:3px;}
+.feature-section i{margin-left:5px;}
+.feature-section a{margin-top:20px; color:#0b5679; font-size:16px; margin-left:4px;}
+.feature-section .content-box{padding:0px 20px; }
+.feature-section .container > .row{padding:50px 0; border-bottom:1px dashed #efefef}
+.feature-section .container > .row:last-child{padding:50px 0 0; border-bottom:none}
+.feature-section .img-sec{padding:0 20px}
+
+.team-sec{float:left; width:100%; background:#efefef; }
+.team-sec h2{font-size:38px; font-weight:bold; color:#0f3648; margin-bottom:50px; padding-top:0}
+.team-sec h2 small{font-size: 18px;    line-height: 0px;    margin-left: 3px;}
+.team-sec h3 {font-size: 19px; margin-bottom:20px; text-transform:uppercase; color:#394F67; font-weight:600}
+.team-sec p{font-size:16px; margin:15px 0; line-height:30px;}
+.team-sec .contact-con i {border: 1px solid #394F67; border-radius: 50%; font-size: 21px; margin: 0 5px; color:#394F67; cursor:pointer;  -webkit-transition: all .50s;  -moz-transition: all .50s; transition: all .50s; width:47px; height:47px; text-align:center; line-height:47px}
+.team-sec .contact-con i:hover{border: 1px solid #394F67; color:#fff; background:#394F67}
+.team-sec img{height:290px;}
+.team-sec .member-block{padding-bottom:30px;}
+
+
+.testimonial-sec{background:url(../img/about-bg.jpg) repeat-x; float:left; width:100%; color:#fff;}
+.testimonial-sec h2{font-size:54px; font-weight:bold; margin:0 0 60px;}
+.testimonial-sec .carousel {padding-bottom: 60px;}
+.testimonial-sec .carousel .carousel-inner .item {opacity: 0; transition-property: opacity;}
+.testimonial-sec .carousel .carousel-inner .active {opacity: 1; transition-property: opacity;}
+.testimonial-sec .carousel .carousel-indicators {bottom: 10px;}
+.testimonial-sec .carousel .carousel-indicators > li {border:1px solid #fff!important; border: medium none;}
+.testimonial-sec .carousel .carousel-indicators .active{background-color: #fff;}
+.testimonial-sec .carousel p {font-size: 19px; font-weight: 400; color: #e1e1e1;}
+.testimonial-sec blockquote {border: medium none; text-align: center; margin-top:20px;}
+.testimonial-sec .profile-circle img {border-radius: 50%; height: 150px; margin: 0 auto; width: 150px;}
+.testimonial-sec blockquote footer{color:#fff; background:none;}
+
+
+.f-small-block{width:100%; float:left; background:#1F2D3C; padding:30px 0}
+.f-small-block .small-inner{padding:0 50px;}
+.f-small-block h3{color:#fff; font-weight:600; text-transform:uppercase; font-size:24px; margin-bottom:15px; margin-top:0;}
+.f-small-block p{color:#e1e1e1; font-size:15px; font-weight:300; margin-bottom:15px;}
+
+
+.contact-sec{float:left; width:100%; }
+.contact-sec h2{font-size:55px; font-weight:bold; margin:0 0 60px; color:#0f3648}
+
+
+footer{float:left; width:100%; background:#1F2D3C; color:#fff; height:50px; line-height:50px;}
+footer p{font-size:14px; font-weight:300; margin-bottom:0;}
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 768px){
+
+h2 {}	
+.banner-sec {height: 50vh;}
+.banner-sec h1 {font-size: 30px;}
+.banner-sec h2 {line-height: 36px; font-size:19px;}
+.about-sec h2 { margin-bottom: 20px; text-align: center; font-size:38px}
+.testimonial-sec h2, .contact-sec h2{font-size:38px; margin:0 0 30px}
+}
+@media (max-width: 460px){
+	.banner-sec .jumbotron{padding:30px 0;}
+	.banner-sec {height: 50vh;}
+	.banner-sec .input-group{display:none;}
+	p, .feature-section h3{text-align:center;}
+	.feature-section a{float:left; width:100%; text-align:center; margin-top:0;}
+	.f-small-block .small-inner{padding:0 20px}
+	
+}

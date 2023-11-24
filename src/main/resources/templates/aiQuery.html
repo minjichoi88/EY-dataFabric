@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="icon" href="img/ey2.png"/>
+    <link rel="apple-touch-icon" href="img/ey2.png"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>EY Data Fabric Portal</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/contact-input-style.css">
+    <link rel="stylesheet" href="css/hover-effect.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+  </head>
+  <body>
+    <script src="js/main/aiquery.js"></script>
+<nav class="navbar navbar-default top-bar affix" data-spy="affix" data-offset-top="250" >
+    <div class="container" >
+        <!- Brand and toggle get grouped for better mobile display ->
+        <div class="navbar-header page-scroll">
+            <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+          </div>
+          <!- Collect the nav links, forms, and other content for toggling ->
+          <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+          <a href="#home" class="navbar-brand"><img src="img/ey.png" style="height: 50px; position: relative; top: -12px;"></a>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href='/main'>Main</a></li>
+              <li><a href='/dataMap'>DataMap</a></li>
+              <li><a href='/aiQuery'>AI Query</a></li>
+              <li><a href='/Administration'>Administration</a></li>
+            </ul>
+        </div>
+        <!- /.navbar-collapse ->
+    </div>
+    <!- /.container-fluid ->
+</nav>
+
+<section class="banner-sec" id="home">
+    <div class="container flex-container">
+        <div class="jumbotron">
+            <h4 style="color : #5a5a5a;">AI Query</h4>
+        </div>
+        <div style="float: left; padding:15px;">
+          <label>DataBase</label>
+          <div class="form-control flex-item" style="width: 1100px;">
+          </div>
+        </div>
+        <div style="float: left; padding:15px;">
+          <div style="margin: 5px;">
+            <label>자연어 쿼리 입력</label>
+            <button type="button" class="btn btn-search" style="height: 24px; font-size: 14px; float: right;" onclick="genNatural();">생성</button>
+            <button type="button" class="btn btn-search" style="height: 24px; font-size: 14px; float: right; margin-right: 5px;" onclick="clearAll();">모두 지우기</button>
+          </div>
+          <div class="form-control flex-item" style="width: 1100px; height: 60px;">
+            <textarea class="textarea" spellcheck="false" id="naturalWord" style="width: 1000px; height: 50px; border: white; resize: none;"></textarea>
+          </div>
+        </div>
+        <div style="float: left; padding:15px; width: 565px;">
+          <div style="display: flex; justify-content: space-between; margin: 5px;">
+            <label>자동으로 생성된 쿼리</label>
+            <button type="button" class="btn btn-search" style="height: 24px; font-size: 14px;" onclick="checkVql()">조회</button>
+          </div>
+          <div id="sqlResultDiv" class="form-control flex-item loadingImg" style="height: 90px;">
+            <textarea class="textarea" spellcheck="false" id="sqlResult" style="width:480px; height: 80px; border: white; resize: none;"></textarea>
+          </div>
+        </div>
+        <div style="float: left; padding:15px; width: 565px;">
+          <div style="display: flex; justify-content: space-between; margin: 5px;">
+            <label>쿼리 설명</label>
+          </div>
+          <div id="sqlResultDiv" class="form-control flex-item loadingImg" style="height: 90px;">
+            <textarea class="textarea" spellcheck="false" id="sqlExplanation" style="width:480px; height: 80px; border: white; resize: none;"></textarea>
+          </div>
+        </div>
+        <div style="float: left; padding:15px;padding-bottom: 50px;">
+          <label>SQL 실행 결과</label>
+          <div id="vqlResult" class="form-control flex-item" style="width: 1100px; height: 400px; overflow: scroll;"></div>
+        </div>
+    </div>
+</section>  
+<footer>
+<div class="container">
+<div class="row">
+<p class="text-center">EY<i class="fa fa-love"></i><a href="https://bootstrapthemes.co">Building a Better Working World</a>
+</p>
+</div>
+</div>
+</footer>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/oppear_1.1.2.min.js"></script>
+    <script> 
+      $(window).scroll(function () {
+        var sticky = $('.navbar-brand'),
+            scroll = $(window).scrollTop();
+          
+          if (scroll >= 250) sticky.addClass('dark');
+          else sticky.removeClass('dark');
+          
+      });
+      
+      $('.service-box').Oppear({
+        delay : 500,
+        });
+      $('.main-text').Oppear({
+        direction:'right',
+      });
+      $('.points').Oppear({
+        direction:'left',
+      });
+      $('.up-effect').Oppear({
+        direction:'up',
+      });
+      $('.down-effect').Oppear({
+        direction:'down',
+      });
+      $('.left-effect').Oppear({
+        direction:'right',
+      });
+      $('.right-effect').Oppear({
+        direction:'left',
+      });
+      
+    </script>
+    <script>
+      $('a[href^="#"]').on('click', function(event) {
+
+        var target = $( $(this).attr('href') );
+
+        if( target.length ) {
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+        }
+      });
+
+    </script>
+  </body>
+</html>
