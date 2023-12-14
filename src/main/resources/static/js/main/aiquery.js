@@ -46,7 +46,7 @@ function genNaturalBak(){
   function genNatural(){
     var naturalWord = document.getElementById('naturalWord').value;
     var viewNameStr = viewName;
-    console.log('viewName2', viewName)
+    console.log('dbName', dbName)
     if(viewNameStr =="" || viewNameStr == null || viewNameStr ==undefined) viewNameStr = "cg_str";
     vqlData=null;
     if(naturalWord == ""){
@@ -57,11 +57,11 @@ function genNaturalBak(){
       url : "aiQuery/genNatural",
       type : 'post',
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json; charset=utf-8'
       },
       data : JSON.stringify({
-        "databaseName": "admin",
-        "execute": "true", 
+        "databaseName": dbName,
+        "execute": true, 
         "limit": 100,
         "naturalLanguageQuery": naturalWord,
         "offset": 0,
@@ -131,9 +131,13 @@ function checkVql(){
   console.log('vql', vqlData)
   //var dbname = vqlData[0].databaseName;
   //var viewName = vqlData[0].viewName;
-  var vql = vqlData[0].query.toString()
-  openLoading();
-  $.ajax({
+  
+  if(vqlData == 'undefined'|| vqlData == null || vqlData == undefined){
+    alert('조회할 쿼리가 없습니다.')
+  }else{
+    var vql = vqlData[0].query.toString()
+    openLoading();
+    $.ajax({
       url : "aiQuery/checkVql",
       type : 'post',
       headers:{
@@ -147,24 +151,26 @@ function checkVql(){
         "vql": vql
       }),
       success : function(data) {
-          //closeLoading();
-          closeLoading();
-          data = JSON.parse(data) 
-          console.log('data', data)
-          if(data[0].rows == null || data[0].rows.length ==0){
-            defaultData="";
-            document.getElementById('vqlResult').innerText="쿼리 실행 결과가 없습니다."
-          }else{
-            defaultData = data[0].rows[0].values;
-            drawResultList();
-            json2table(defaultData, dom.$table);
-          }
-        },
+        //closeLoading();
+        closeLoading();
+        data = JSON.parse(data) 
+        console.log('data', data)
+        if(data[0].rows == null || data[0].rows.length ==0){
+          defaultData="";
+          document.getElementById('vqlResult').innerText="쿼리 실행 결과가 없습니다."
+        }else{
+          defaultData = data[0].rows[0].values;
+          drawResultList();
+          json2table(defaultData, dom.$table);
+        }
+      },
       error : function(data) {
         console.log('error; data', data)
         alert("error");
         }
       });
+    }
+
   }
 
   function drawResultList(){

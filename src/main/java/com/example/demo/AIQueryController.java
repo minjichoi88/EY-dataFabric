@@ -29,19 +29,13 @@ public class AIQueryController {
         return "aiQuery";
     }
 
-   @ResponseBody
-    @JsonProperty("data")
-    @RequestMapping(value = "aiQuery/genNatural", method = { RequestMethod.POST })
-    public ResponseEntity<String> getData(HttpServletResponse response,HttpServletRequest request){
-        StringBuilder stringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = null;
-        JSONArray data = new JSONArray();
-        String bodystr;
+    public ResponseEntity<String> postDenodo(HttpServletRequest request, BufferedReader bufferedReader, StringBuilder stringBuilder, 
+    String bodystr, JSONArray data, HttpServletResponse response, String urlStr){
         try {
             request.setCharacterEncoding("utf-8");
             InputStream inputStream = request.getInputStream();
             if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream ,"utf-8"));
                 char[] charBuffer = new char[128];
                 int bytesRead = -1;
                 while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
@@ -50,9 +44,7 @@ public class AIQueryController {
             }
             System.out.println("str"+stringBuilder.toString());
             bodystr = stringBuilder.toString();
-
-            
-            String urlStr = "http://127.0.0.1:9090/denodo-data-catalog/api/assisted-query/generate";
+            System.out.println("bodystr"+bodystr);
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             String userCredentials = "admin:admin";
@@ -67,7 +59,7 @@ public class AIQueryController {
 			//conn.setRequestProperty("auth", "myAuth"); // header의 auth 정보
 			conn.setDoOutput(true); // 서버로부터 받는 값이 있다면 true
             
-            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
             writer.write(bodystr);
             writer.flush();
             writer.close();
@@ -80,16 +72,23 @@ public class AIQueryController {
 			}
 			data = new JSONArray("["+sb.toString().trim()+"]"); // json으로 변경 (역직렬화)
             System.out.println("data"+ data);
-            
-            
 			return ResponseEntity.status(HttpStatus.OK).body(data.toString());
 		    } catch (Exception e) {
-                
                 e.printStackTrace();
-                System.out.println("EEEE:"+ e);
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("["+e.toString()+"]");
 		    }
-        //return ResponseEntity.status(HttpStatus.OK).body(data.toString());
+        return ResponseEntity.status(HttpStatus.OK).body(data.toString());
+    }
+
+    @ResponseBody
+    @JsonProperty("data")
+    @RequestMapping(value = "aiQuery/genNatural", method = { RequestMethod.POST })
+    public ResponseEntity<String> getData(HttpServletResponse response,HttpServletRequest request){
+        StringBuilder stringBuilder = new StringBuilder();
+        BufferedReader bufferedReader = null;
+        JSONArray data = new JSONArray();
+        String bodystr="";
+        String urlStr = "http://127.0.0.1:9090/denodo-data-catalog/api/assisted-query/generate";
+        return postDenodo(request, bufferedReader, stringBuilder, bodystr, data, response, urlStr);
         }
 
 
@@ -100,55 +99,9 @@ public class AIQueryController {
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader bufferedReader = null;
         JSONArray data = new JSONArray();
-        String bodystr;
-        try {
-            
-            InputStream inputStream = request.getInputStream();
-            if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                char[] charBuffer = new char[128];
-                int bytesRead = -1;
-                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                    stringBuilder.append(charBuffer, 0, bytesRead);
-                }
-            }
-            System.out.println("str"+stringBuilder.toString());
-            bodystr = stringBuilder.toString();
-
-            
-            String urlStr = "http://127.0.0.1:9090/denodo-data-catalog/api/query/execute/vql";
-			URL url = new URL(urlStr);
-			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            String userCredentials = "admin:admin";
-            String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));
-			response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setContentType("application/json; charset=utf-8");
-			conn.setRequestMethod("POST"); // http 메서드
-			conn.setRequestProperty("Content-Type", "application/json"); // header Content-Type 정보
-            conn.setRequestProperty("Access-Control-Allow-Origin", "*");
-            //conn.setRequestProperty("Authorization", "Baisc YWRtaW46YWRtaW4");
-            conn.setRequestProperty("Authorization", basicAuth);
-			//conn.setRequestProperty("auth", "myAuth"); // header의 auth 정보
-			conn.setDoOutput(true); // 서버로부터 받는 값이 있다면 true
-            
-            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
-            writer.write(bodystr);
-            writer.flush();
-            writer.close();
-
-			// 서버로부터 데이터 읽어오기
-			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			StringBuilder sb = new StringBuilder();
-			String line = null;
-			while((line = br.readLine()) != null) { // 읽을 수 있을 때 까지 반복
-				sb.append(line);
-			}
-			data = new JSONArray("["+sb.toString().trim()+"]"); // json으로 변경 (역직렬화)
-			return ResponseEntity.status(HttpStatus.OK).body(data.toString());
-		    } catch (Exception e) {
-			e.printStackTrace();
-		    }
-        return ResponseEntity.status(HttpStatus.OK).body(data.toString());
+        String bodystr="";
+        String urlStr = "http://127.0.0.1:9090/denodo-data-catalog/api/query/execute/vql";
+        return postDenodo(request, bufferedReader, stringBuilder, bodystr, data, response, urlStr);
         }
 
     /* py 연결용 - unused

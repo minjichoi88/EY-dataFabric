@@ -1,4 +1,5 @@
-var data;
+var data = mapDatajson
+console.log('erd data : ', data)
 var links = [
       // {"source":  1, "target":  0},
       // {"source":  1, "target":  2}
@@ -7,22 +8,22 @@ var links = [
 
 var w = 500,
     h = 500;
-var svg = d3.select("#resultDiv").append("svg").attr("width",w).attr("height",h);
+var svg = d3.select("#spyDiv").append("svg").attr("width",w).attr("height",h);
 
 var link = svg.selectAll(".link").data(links).enter().append("line").attr("class", "link");
 
 var force = d3.layout.force().nodes(data).links(links).size([w, h]).charge(-50).gravity(0.005).linkDistance(200).start();
 
-force.on("tick", function(e) {
-  var k = 6 * e.alpha;
-  data.forEach(function(o, i) {
-    o.y += i & 1 ? k : -k;
-    o.x += i & 2 ? k : -k;
-  });
-  tableGroup.attr("x", function(d) { return d.x; })
-            .attr("y", function(d) { return d.y; });
-  tick();
-});
+// force.on("tick", function(e) {
+//   var k = 6 * e.alpha;
+//   data.forEach(function(o, i) {
+//     o.y += i & 1 ? k : -k;
+//     o.x += i & 2 ? k : -k;
+//   });
+//   tableGroup.attr("x", function(d) { return d.x; })
+//             .attr("y", function(d) { return d.y; });
+//   tick();
+// });
 
 var drag = force.drag().on("dragstart", dragstart);
 function dragstart(d) {d3.select(this).classed("fixed", d.fixed = true);}
